@@ -134,7 +134,7 @@ def calc_emprunt_max(mens: float, taux: float, assurance=0, duree=20) -> Emprunt
 
 
 if __name__ == '__main__':
-    apport = 40000
+    apport = 10000
     ptz = Emprunt(75000, 0, 0.3, duree=20)
     igesa = Emprunt(30000, 1, 0.28, duree=15)
     igesa_traveaux = Emprunt(13000, 0, 0.28, 10)
