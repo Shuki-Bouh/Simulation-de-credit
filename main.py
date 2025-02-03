@@ -8,9 +8,9 @@ if __name__ == '__main__':
 
     emprunt = CumulEmprunt(ptz, igesa, igesa_traveaux, apport_perso=apport)
 
-    salaire = 2500
+    salaire = 2300+1500
 
-    mens_max = salaire * 0.35
+    mens_max = salaire * 0.30
 
     emprunt.completion_pret(3.28, 0.28, mens_max, 25)
 
