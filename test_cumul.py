@@ -32,7 +32,7 @@ class Test_Cumul_Emprunt(unittest.TestCase):
         c3 = c.Emprunt(6000, 5, 17)
         tot = c.CumulEmprunt(c1, c2)
         tot.ajout(c3)
-        self.assertEqual(tot._nb_periode(), 3)
+        self.assertEqual(tot._nb_periode()[0], 3)
 
     def test_calc_mens(self):
         c1 = c.Emprunt(30000, 5, 20)
