@@ -113,11 +113,11 @@ class CumulEmprunt:
 
     def __str__(self) -> str:
         mens = self.mensualite()
-        affichage = f"Somme totale : {int(self.montant())} €\n\tCrédit : {int(self.montant() - self.apportPerso)} €\n\tApport : {self.apportPerso} €\nMensualités : \n"
+        affichage = "Somme empruntée : " + str(int(self.montant())) + " €\nMensualités : \n"
         for k in range(1, self._nb_periode() + 1):
             affichage += "\tPériode " + str(k) + " : " + str(int(mens[k - 1])) + " €\n"
         affichage += "Cout de l'emprunt : " + str(int(self.cout())) + " €\n" + "Somme remboursée : " + \
-                     str(int(self.cout() - self.apportPerso + self.montant())) + " €"
+                     str(int(self.cout() + self.montant())) + " €"
         return affichage
 
 
@@ -134,14 +134,16 @@ def calc_emprunt_max(mens: float, taux: float, assurance=0, duree=20) -> Emprunt
 
 
 if __name__ == '__main__':
-    apport = 60000
+    apport = 10000
+    ptz = Emprunt(75000, 0, 0.3, duree=20)
     igesa = Emprunt(30000, 1, 0.28, duree=15)
-    ptz = Emprunt(75600, 0, 0.28)
-    emprunt = CumulEmprunt(igesa, ptz, apport_perso=apport)
-    salaire = 2500 + 1400
+    igesa_traveaux = Emprunt(13000, 0, 0.28, 10)
+    neant = Emprunt(0, 0, 0)
+    emprunt = CumulEmprunt(ptz, igesa, igesa_traveaux, apport_perso=apport)
+    salaire = 2500
     mens_max = salaire * 0.35
 
     mens_banque = max(mens_max - emprunt.mensualite()[0], 0)
-    emprunt_banque = calc_emprunt_max(mens_banque, 4, 0.37, 20)
+    emprunt_banque = calc_emprunt_max(mens_banque, 3.42, 0.37, 20)
     emprunt.ajout(emprunt_banque)
     print(emprunt)
